@@ -49,15 +49,20 @@ class ParentWrapper extends React.Component {
   }
 
   prefetchImages = () => {
+    // Make a copy of stateful prefetched images
     const prefetchedImages = [...this.state.prefetchedImages]
+    // Only load two more images
     for (let i = 0; i < 2; i++) {
+      // If the total album covers from reddit equals the stored prefetched images, break
       if (this.state.albumCoverUrls.length === this.state.prefetchedImages.length) {
         break
       }
+      // get a random URL string from albumCoverUrls
       let randomUrl = this.state.albumCoverUrls[getRandomInt(this.state.albumCoverUrls.length)]
+      // If prefetched images already has that URL, get another
       while (prefetchedImages.includes(randomUrl)) {
-        randomUrl = this.state.albumCoverUrls
-          .filter((url) => url !== randomUrl)[getRandomInt(this.state.albumCoverUrls.length)]
+        const filteredAlbumCovers = this.state.albumCoverUrls.filter((url) => url !== randomUrl)
+        randomUrl = filteredAlbumCovers[getRandomInt(filteredAlbumCovers.length)]
       }
       prefetchedImages.push(randomUrl)
     }
@@ -81,8 +86,12 @@ class ParentWrapper extends React.Component {
       this.prefetchImages()
     }
 
+    // Select a random image from the prefetched image array that isn't the current image
+    const filteredAlbumCovers = this.state.prefetchedImages.filter((album) => album !== this.state.albumCover)
+    const randomIndex = getRandomInt(filteredAlbumCovers.length)
+    const albumCover = filteredAlbumCovers[randomIndex]
     this.setState({
-      albumCover: this.state.prefetchedImages[getRandomInt(this.state.prefetchedImages.length)]
+      albumCover
     })
   }
 
