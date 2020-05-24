@@ -77,7 +77,11 @@ class ParentWrapper extends React.Component {
   }
 
   getRandomAlbum = () => {
-    this.setState({ albumName: this.props.data.edges[getRandomInt(200)].node.full_text })
+    const randomIndex = getRandomInt(this.props.data.edges.length)
+    this.setState({ 
+      albumName: this.props.data.edges[randomIndex].node.title,
+      date: this.props.data.edges[randomIndex].node.date,
+    })
   }
 
   randomize = () => {
@@ -105,6 +109,10 @@ class ParentWrapper extends React.Component {
         </div>
         <AlbumWrapper src={this.state.albumCover} albumName={this.state.albumName}></AlbumWrapper>
         <RandomizerButton onClick={this.randomize}>Random</RandomizerButton>
+        <div>{(() => {
+          const date = new Date()
+          return new Date(Date.parse(this.state.date)).toDateString()
+        })()}</div>
       </div>
     )
   }
@@ -124,10 +132,11 @@ const Album = (props) => {
 
 export const query = graphql`
   query AlbumQuery {
-    allTwitterStatusesUserTimelineAlbumNames {
+    allMongodbAlbumnamesrealAlbums {
       edges {
         node {
-          full_text
+          title
+          date
         }
       }
     }
@@ -205,6 +214,6 @@ class AlbumWrapper extends React.Component {
 export default ({data}) => (
   <Wrapper>
     <SEO title="Home" />
-    <ParentWrapper data={data.allTwitterStatusesUserTimelineAlbumNames}></ParentWrapper>
+    <ParentWrapper data={data.allMongodbAlbumnamesrealAlbums}></ParentWrapper>
   </Wrapper>
 )

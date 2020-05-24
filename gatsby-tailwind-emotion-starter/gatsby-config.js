@@ -23,6 +23,19 @@ module.exports = {
         subredditName:`fakealbumcovers`,
       }
     },
+    /*
+     * Gatsby's data processing layer begins with “source” plugins. Here we
+     * setup the site to pull data from the "documents" collection in a local
+     * MongoDB instance
+     */
+    {
+      resolve: `gatsby-source-mongodb`,
+      options: { 
+        dbName: `album-names-real`, 
+        collection: `albums` ,
+        connectionString: 'mongodb://testadmin:password1@ds033069.mlab.com:33069',
+      },
+    },
     {
       resolve: `gatsby-source-twitter`,
       options: {

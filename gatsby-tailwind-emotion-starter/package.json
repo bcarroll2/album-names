@@ -31,10 +31,13 @@
   },
   "devDependencies": {
     "babel-preset-gatsby": "^0.2.26",
+    "gatsby-source-mongodb": "^2.3.2",
+    "mongoose": "^5.9.15",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^1.19.1",
     "tailwind.macro": "^1.0.0-alpha.10",
-    "tailwindcss": "^1.1.4"
+    "tailwindcss": "^1.1.4",
+    "twitter": "^1.7.1"
   },
   "repository": {
     "type": "git",
