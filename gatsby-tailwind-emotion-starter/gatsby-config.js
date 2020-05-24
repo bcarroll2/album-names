@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Tailwind CSS + Emotion Starter`,
@@ -40,9 +42,10 @@ module.exports = {
       resolve: `gatsby-source-twitter`,
       options: {
         credentials: {
-          consumer_key: "ZdoQkKqXU0o4SJ7kOo1z4H6TY",
-          consumer_secret: "nk0MI9gPEF9iBL879J9SjBLkdaRGxinnLyY8e7QaBSb5blTDfQ",
-          bearer_token: "AAAAAAAAAAAAAAAAAAAAAL1XEgEAAAAAT17oHKyNlf5rkYGFHvXhPRcsX4w%3D59U3DSHE94VElgWchaOy7hBD6GIQ0TZczevppRuDWrPPM30q9H",
+          consumer_key: process.env.TWITTER_CONSUMER_KEY,
+          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+          bearer_token: process.env.TWITTER_BEARER_TOKEN,
+          
         },
         queries: {
           albumNames: {

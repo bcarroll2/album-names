@@ -9,16 +9,23 @@ import axios from 'axios'
 
 
 const Wrapper = tw.div`
-  flex items-center justify-center flex-col h-screen
+  flex items-center justify-center flex-col h-screen p-6
 `
 
 const Main = styled('div')`
   ${tw`p-8 bg-gray-100 rounded-lg shadow-2xl items-center justify-center flex relative`}
-  height: 500px;
-  width: 500px;
+  // height: 500px;
+  // width: 500px;
   background: url(${(props) => props.src});
   background-position: center;
   background-size: contain;
+  background-repeat: no-repeat;
+  height: 300px;
+  width: 300px;
+  @media screen and (min-width: 800px) {
+    height: 600px;
+    width: 600px;
+  }
 `
 
 const makeSureItsAnImg = (url) => {
@@ -117,7 +124,7 @@ class ParentWrapper extends React.Component {
 }
 
 const Heading = styled('h1')`
-  ${tw`text-2xl text-white uppercase font-sans z-10`}
+  ${tw`text-xl md:text-2xl text-white uppercase font-sans z-10`}
   background: rgba(0,0,0,0.3);
   padding: 20px;
 `
