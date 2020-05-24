@@ -14,8 +14,6 @@ const Wrapper = tw.div`
 
 const Main = styled('div')`
   ${tw`p-8 bg-gray-100 rounded-lg shadow-2xl items-center justify-center flex relative`}
-  // height: 500px;
-  // width: 500px;
   background: url(${(props) => props.src});
   background-position: center;
   background-size: contain;
@@ -132,7 +130,7 @@ class ParentWrapper extends React.Component {
 
 const Heading = styled('h1')`
   ${tw`text-xl md:text-2xl text-white uppercase font-sans z-10`}
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.5);
   padding: 20px;
 `
 
