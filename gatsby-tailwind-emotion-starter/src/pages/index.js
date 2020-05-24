@@ -18,11 +18,18 @@ const Main = styled('div')`
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  height: 300px;
-  width: 300px;
+  // height: 300px;
+  max-width: 700px;
+  width: 100%;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
   @media screen and (min-width: 800px) {
-    height: 600px;
-    width: 600px;
+    // height: 600px;
+    // width: 600px;
   }
 `
 
@@ -111,7 +118,7 @@ class ParentWrapper extends React.Component {
 
   render() {
     return (
-      <div key="parentWrapper" css={tw`flex flex-col items-center justify-center`}>
+      <div key="parentWrapper" css={tw`flex flex-col items-center justify-center w-full`}>
         <div css={css`position: absolute; top: -999999px; left: -99999px;`}key="mainImageWrapper">
           {this.state.prefetchedImages.map((imageUrl, index) => {
             return <img src={imageUrl} key={index} />
