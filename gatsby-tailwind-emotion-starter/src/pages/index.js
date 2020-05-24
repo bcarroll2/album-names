@@ -58,14 +58,11 @@ class ParentWrapper extends React.Component {
       if (this.state.albumCoverUrls.length === this.state.prefetchedImages.length) {
         break
       }
-      // get a random URL string from albumCoverUrls
-      let randomUrl = this.state.albumCoverUrls[getRandomInt(this.state.albumCoverUrls.length)]
-      // If prefetched images already has that URL, get another
-      while (prefetchedImages.includes(randomUrl)) {
-        const filteredAlbumCovers = this.state.albumCoverUrls.filter((url) => url !== randomUrl)
-        randomUrl = filteredAlbumCovers[getRandomInt(filteredAlbumCovers.length)]
+      let difference = this.state.albumCoverUrls.filter(x => !prefetchedImages.includes(x));
+      const randomUrl = difference[getRandomInt(difference.length)]
+      if (randomUrl) {
+        prefetchedImages.push(randomUrl)
       }
-      prefetchedImages.push(randomUrl)
     }
     this.setState({
       prefetchedImages
