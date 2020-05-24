@@ -28,9 +28,16 @@ const Main = styled('div')`
   }
 `
 
+// Utils
 const makeSureItsAnImg = (url) => {
   const regex = new RegExp(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)
   return regex.test(url)
+}
+
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
 }
 
 class ParentWrapper extends React.Component {
@@ -84,7 +91,7 @@ class ParentWrapper extends React.Component {
   getRandomAlbum = () => {
     const randomIndex = getRandomInt(this.props.data.edges.length)
     this.setState({ 
-      albumName: this.props.data.edges[randomIndex].node.title,
+      albumName: decodeHtml(this.props.data.edges[randomIndex].node.title),
       date: this.props.data.edges[randomIndex].node.date,
     })
   }
