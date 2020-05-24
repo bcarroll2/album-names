@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "babel-preset-gatsby": "^0.2.26",
+    "dotenv": "^8.2.0",
     "gatsby-source-mongodb": "^2.3.2",
     "mongoose": "^5.9.15",
     "postcss-preset-env": "^6.7.0",

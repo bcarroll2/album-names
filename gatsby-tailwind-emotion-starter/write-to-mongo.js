@@ -1,7 +1,8 @@
 // Set up mongoose connection
 const mongoose = require('mongoose');
-const tweets = require('./tweet')
-let dev_db_url = 'mongodb://testadmin:password1@ds033069.mlab.com:33069/album-names-real';
+// const tweets = require('./tweet')
+require('dotenv').config()
+let dev_db_url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/album-names-real`;
 let mongoDB = dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;
@@ -9,9 +10,9 @@ let db = mongoose.connection;
 const Twitter = require('twitter');
 
 var client = new Twitter({
-  consumer_key: 'ZdoQkKqXU0o4SJ7kOo1z4H6TY',
-  consumer_secret: 'nk0MI9gPEF9iBL879J9SjBLkdaRGxinnLyY8e7QaBSb5blTDfQ',
-  bearer_token: 'AAAAAAAAAAAAAAAAAAAAAL1XEgEAAAAAT17oHKyNlf5rkYGFHvXhPRcsX4w%3D59U3DSHE94VElgWchaOy7hBD6GIQ0TZczevppRuDWrPPM30q9H'
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  bearer_token: process.env.TWITTER_BEARER_TOKEN,
 });
 
 // console.log(db)
@@ -81,8 +82,9 @@ db.once('open', function() {
     })
   })
   
-  for (let i = 0;  i < tweets.length; i++) {
-    createAlbum(tweets[i])
-  }
+  // This was for manually populating the DB with exported tweet data
+  // for (let i = 0;  i < tweets.length; i++) {
+  //   createAlbum(tweets[i])
+  // }
 })
 

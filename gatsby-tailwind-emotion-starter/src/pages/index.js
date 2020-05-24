@@ -18,6 +18,7 @@ const Main = styled('div')`
   width: 500px;
   background: url(${(props) => props.src});
   background-position: center;
+  background-size: contain;
 `
 
 const makeSureItsAnImg = (url) => {
