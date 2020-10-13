@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 // const tweets = require('./tweet')
 require('dotenv').config()
-let dev_db_url = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/album-names-real`;
+let dev_db_url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/album-names-real?retryWrites=true&w=majority`;
 let mongoDB = dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.Promise = global.Promise;

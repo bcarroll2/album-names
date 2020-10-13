@@ -33,9 +33,9 @@ module.exports = {
     {
       resolve: `gatsby-source-mongodb`,
       options: { 
-        dbName: `album-names-real`, 
+        dbName: `album-names-real?retryWrites=true&w=majority`,
         collection: `albums` ,
-        connectionString: 'mongodb://testadmin:password1@ds033069.mlab.com:33069',
+        connectionString: `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}`,
       },
     },
     {
